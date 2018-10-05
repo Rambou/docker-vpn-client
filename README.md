@@ -21,12 +21,14 @@ docker run --net=host \
            --name pptp-tunnel-$VPN_SERVER \
            -e VPN_ROUTING_IPS="$VPN_ROUTING_IPS" \
            -e VPN_DEBUG="$VPN_DEBUG" \
+           -e VPN_USER="$VPN_USER" \
+           -e VPN_SERVER="$VPN_SERVER" \
            --env-file <(cat <<-END
 		VPN_PASSWORD=$VPN_PASSOWRD
 		END
            ) \
            --detach \
-           gzm55/vpn-client pptp <server-domain-or-ip> <user> [<pppd-options>]
+           gzm55/vpn-client pptp [<pppd-options>]
 
 #view openconnect help
 docker run -it --rm gzm55/vpn-client openconect --help
@@ -40,13 +42,14 @@ docker run --net=host \
            --cap-add=NET_ADMIN \
            --name openconnect-tunnel-$VPN_SERVER \
            -e VPN_DEBUG="$VPN_DEBUG" \
+           -e VPN_SERVER="$VPN_SERVER" \
            --env-file <(cat <<-END
 		VPN_PASSWORD=$VPN_PASSOWRD
 		VPN_OPENCONNECT_COOKIE=$VPN_OPENCONNECT_COOKIE
 		END
            ) \
            --detach \
-           gzm55/vpn-client openconnect [<openconnect-options>] <server-domain-or-ip>
+           gzm55/vpn-client openconnect [<openconnect-options>]
 ```
 
 Accepted docker environment variables for vpn client:
