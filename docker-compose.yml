@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  vpn:
+    build: .
+    image: gzm55/vpn-client
+    container_name: vpn-aegean
+    privileged: true
+    devices:
+      - "/dev/ppp"
+    cap_add:
+      - NET_ADMIN
+    network_mode: "host"
+    environment:
+      - VPN_ROUTING_IPS=$VPN_ROUTING_IPS
+      - VPN_PASSWORD=$VPN_PASSWORD
+      - VPN_SERVER=$VPN_SERVER
+      - VPN_USER=$VPN_USER
+      - VPNDEBUG=y
+    command: pptp

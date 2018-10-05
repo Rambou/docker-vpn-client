@@ -13,12 +13,12 @@ accepted envrionments:
 - VPN_PASSWORD
 - VPN_ROUTING_IPS="172.0.0.0/8 www.google.com"
 - VPN_DEBUG=y
+- VPN_SERVER
+- VPN_USER
+
 END
   exit 0
 fi
-
-export VPN_SERVER="$1"
-export VPN_USER="$2"
 
 shift
 shift

@@ -55,3 +55,10 @@ Accepted docker environment variables for vpn client:
 * VPN_DEBUG: [pptp] no empty string will enable debug option for pppd
 * VPN_PASSOWRD: [all] login password
 * VPN_OPENCONNECT_COOKIE: [openconnect] login cookie
+
+## Docker Compose
+
+You can use the docker-compose by either changing enviroment variables on docker-comspose.yml, or by exporting them on your console like
+```
+exports VPN_ROUTING_IPS="172.0.0.0/8 www.google.com" VPN_PASSOWRD=xxx VPN_SERVER=vpn.myserver.gr VPN_USER=rambou
+```
